@@ -1,0 +1,6 @@
+1.当程序出现错误，python会自动引发异常，也可以通过raise显示地引发异常。一旦执行了raise语句，raise后面的语句将不能执行。
+例子：
+        if rospy.is_shutdown():
+            raise Exception("Got shutdown request before subscribers connected")
+
+2.Python需要注意严格的空格，不同空格的个数就是不同的函数了。

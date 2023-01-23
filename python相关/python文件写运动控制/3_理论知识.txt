@@ -1,0 +1,8 @@
+ROS Base Controller是ROS中的基本控制节点，其中包含基本PID算法来控制电机运动。它主要任务是监听终端中或其他节点发出的以/cmd_vel为topic的控制指令(Topic是ROS中的一个基本概念，不同的节点之间通过发布和订阅相同Topic的消息来通信)，然后发布/odom topic的odometry 消息(里程，指直接获得的机器人走过的距离，通常由编码器数据计算得到或结合惯导经EKF得到),同时发布/odom坐标系和机体坐标系之间的转换(如果odom数据由EKF得到的话，这个工作由 robot_pose_ekf 节点完成).
+
+move_base pacakge 可以让机器人移动至我们指定的目标地点，其中包含避障，路径规划等功能。
+
+gmapping package :SLAM,用激光雷达或Kinect构建实时地图
+
+amcl package : 机器人利用SLAM或odometry数据实时定位
+

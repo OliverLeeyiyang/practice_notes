@@ -1,0 +1,17 @@
+例子：
+建一个包，叫mecanum_controller;
+里面新建一个文件夹scripts;
+新建文件，文件名：mecanum_controller.py；
+里面加入内容：
+。。。。。
+保存后到文件夹中，打开终端，输入：chmod +x mecanum_controller.py
+之后就可以用$ rosrun mecanum_controller mecanum_controller.py运行；
+或用launch文件：
+<launch>  
+  <arg name="cmd_topic" default="cmd_vel" />  
+  <node pkg="mecanum_controller" type="mecanum_controller.py" name="mecanum_controller">  
+    <remap from="cmd_vel" to="$(arg cmd_topic)" />  
+  </node>  
+</launch>
+
+

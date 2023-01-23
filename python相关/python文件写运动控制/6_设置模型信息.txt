@@ -1,0 +1,9 @@
+通过写入/gazebo/set_model_state话题，可以控制模型的位置和姿态改变。也可以解决模型运动中飘的问题。
+
+改解决方法需要用到gazebo/model_states和gazebo/set_model_state两个话题，前者用来接受模型当前信息，后者用来改变模型信息。
+
+需要注意的是：
+gazebo/model_states       对应    ModelStates
+gazebo/set_model_state    对应    ModelState
+
+文件中twistCllback函数中，[-1]是因为模型是在最后加入的，位置处于字典的末尾，如果是其他模型，改变位置序号即可。
