@@ -1,0 +1,12 @@
+<launch>
+
+  <include file="$(find slam_bot)/launch/plugin/rviz_slam.launch">
+  </include>
+
+  <include file="$(find slam_bot)/launch/plugin/bot_pointcloud_to_laserscan.launch">
+  </include>
+
+  <include file="$(find slam_bot)/launch/plugin/gmapping.launch">
+  </include>
+
+</launch>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Included robot urdf Files -->
+    <xacro:include filename="$(find slam_bot)/xacro/HDL32E_bot.urdf.xacro" />
+    <xacro:HDL-32E/>
+    <xacro:include filename="$(find slam_bot)/xacro/IMU.xacro" />
+    <xacro:IMU/>
+
+    <!-- Included Gazebo parameters -->
+    <xacro:include filename="$(find slam_bot)/xacro/drive_bot.gazebo" />
+
+</robot>

@@ -1,0 +1,45 @@
+<launch>
+
+  <!-- Launch the room model  -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+    <arg name="verbose" value="false"/>
+    <arg name="world_name" value="$(find slam_bot)/rviz_and_world/nine.world"/>
+  </include>
+  
+  <!--spawn the model in the specified location -->
+  <param
+    name="robot_description"
+    command="$(find xacro)/xacro $(find slam_bot)/xacro/bot_gazebo.urdf.xacro" />
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-urdf -model bot -param robot_description -x 9.0 -y -10.0 -z 0.0 -Y 1.57"
+    output="screen" />
+
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher"
+    respawn="false" output="screen" >
+    <param name="publish_frequency" type="double" value="40.0" />
+  </node>
+
+  <node
+    name="fake_joint_calibration"
+    pkg="rostopic"
+    type="rostopic"
+    args="pub /calibrated std_msgs/Bool true" />
+
+  <node
+    name="tf_footprint_base"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 base_footprint base_link 40" />
+
+</launch>

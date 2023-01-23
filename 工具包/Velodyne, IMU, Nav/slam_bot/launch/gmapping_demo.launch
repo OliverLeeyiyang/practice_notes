@@ -1,0 +1,16 @@
+<launch>
+
+
+  <!--#############################################-->
+  <!--###        Spwan the gmapping bot 	###-->
+  <!--#############################################-->
+  <include file="$(find slam_bot)/launch/bot_spawn.launch">
+  </include>
+
+  <!--#############################################-->
+  <!--### 		Gmapping 		###-->
+  <!--#############################################-->
+  <include file="$(find slam_bot)/launch/plugin/gmapping_map.launch">
+  </include>
+
+</launch>
