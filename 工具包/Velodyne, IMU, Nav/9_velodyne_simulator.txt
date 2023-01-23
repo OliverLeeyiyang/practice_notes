@@ -1,0 +1,16 @@
+this package includes VLP16 and HDE32
+https://github.com/lmark1/velodyne_simulator
+
+
+1.when try to use this（这一步不定必要）
+
+sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/gazebo-stable.list'
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
+sudo apt update
+sudo apt upgrade
+
+
+2. Remember to set the default value of gpu to true in the urdf file!!!!!!
+一定要把文件中的gpu选项改为True！！！不然血妈卡！！！
+
+3. 注意激光雷达放置的parent_link，不要加错位置。

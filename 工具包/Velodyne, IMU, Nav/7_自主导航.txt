@@ -1,0 +1,22 @@
+讲解：
+https://blog.csdn.net/lingchen2348/article/details/79506166  （这个的计算式有问题，看下面这篇）
+https://blog.csdn.net/xiaoma_bk/article/details/79082629
+
+1. 给定机器人导航的位置指令：
+rostopic pub /move_base_simple/goal  geometry_msgs/PoseStamped \ '{header: {frame_id: "map"},pose: {position:{x: 1.0,y: 0,z: 0},orientation: {x: 0,y: 0,z: 0,w: 1}}}'
+
+pose的含义：位置，以米为单位，此处pose: {position:{x: 1.0,y: 0,z: 0}就是指目标位置在（1,0,0）处 。
+orientation:方向，使用四元数表示，表示机器人到达目的地后的姿态，此处orientation: {x: 0,y: 0,z: 0,w: 1}表示机器人到达（1,0,0）点后，姿态（朝向）保持不变，
+
+2.四元数的计算及代码实现
+https://blog.csdn.net/xiaoma_bk/article/details/79082629
+
+
+3.注意在配置base_local_planner_params.yaml这个文件时！
+   holonomic_robot: true 这个是适用于麦轮底盘的！！！
+   max_vel_x: 1.0        可以设置的大一点
+   vx_samples: 30        可以设置的大一点
+
+4.move_base算法支持不断更改的导航目标点，间隔几秒使用
+client.send_goal(goal)
+即可。可以参考/practice/python相关/写过的文件存档/11_nav_test.py

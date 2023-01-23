@@ -1,0 +1,8 @@
+1.三维点云转二维的功能包：depthimage_to_laserscan
+
+2.导航功能包要求机器人能够发布里程计nav_msgs/Odometry消息
+3.传感器数据需要封装成sensor_msgs/LaserScan或者sensor_msgs/PointCloud的形式
+4.机器人需要ROS tf来发布机器人坐标系的变换关系。
+5.底盘控制器的主要功能是转换导航软件包集的输出数据，该消息是geometry_msgs/Twist类型的消息，它将会被转换成机器人相应的马达速度。
+
+6.

@@ -1,0 +1,33 @@
+1.跑包时
+$ roscore
+$ rosparam set use_sim_time true
+$ roslaunch hdl_graph_slam hdl_graph_slam_501.launch       //注意看用室内还是室外的建图方法
+$ roscd hdl_graph_slam/rviz
+$ rviz -d hdl_graph_slam.rviz
+$ rosbag play --clock hdl_501_filtered.bag
+
+保存地图：（最好直接粘贴如下命令）
+rosservice call /hdl_graph_slam/save_map "resolution: 0.05
+destination: '/home/oliver/map.pcd'"
+
+如果保存不了，看这个网址：
+https://blog.csdn.net/a850565178/article/details/105434696
+
+查看map.pcd:
+$ pcl_viewer map.pcd
+
+注：
+(1)在包运行时，Markarray报错好像很正常，应该不用管；
+(2)可以修改map_points的size为0.02，这样地图就会看起来舒服很多；
+
+2.使用VLP16实物实时建图
+先开VLP16:
+$ roslaunch velodyne_pointcloud VLP16_points.launch
+$ rosparam set use_sim_time false
+//注意先修改501.launch中的内容，有一行需要注释掉
+$ roslaunch hdl_graph_slam hdl_graph_slam_501.launch
+$ roscd hdl_graph_slam/rviz
+$ rviz -d hdl_graph_slam.rviz
+
+注意！！！
+hdl_graph_slam算法需要一定的移动距离才可以运行loop，所以在跑实时运行时，一定要让机器人的odom运行一段距离！

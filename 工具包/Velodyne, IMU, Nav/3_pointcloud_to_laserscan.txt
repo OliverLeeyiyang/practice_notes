@@ -1,0 +1,9 @@
+可以把三维点云实时转化为二维激光扫描的点。
+使用时注意对launch文件的配置，比如target_frame，min_height，max_height，range_max等信息.
+
+https://github.com/ros-perception/pointcloud_to_laserscan/tree/lunar-devel
+记得下lunar_devel版的！
+
+或者直接拿以前的来编译也行！！
+
+

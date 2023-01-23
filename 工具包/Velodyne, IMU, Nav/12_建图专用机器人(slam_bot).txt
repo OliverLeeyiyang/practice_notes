@@ -1,0 +1,3 @@
+见slam_bot包
+
+目前可以兼容gmapping和LIO-SAM算法。

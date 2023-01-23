@@ -1,0 +1,9 @@
+下载网址：
+http://wiki.ros.org/velodyne_gazebo_plugins
+https://bitbucket.org/DataspeedInc/velodyne_simulator/src/master/
+
+http://wiki.ros.org/velodyne_pointcloud
+
+
+导航相关网址：
+http://wiki.ros.org/navigation

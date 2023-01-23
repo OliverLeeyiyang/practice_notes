@@ -1,0 +1,35 @@
+1.相关网址：
+https://github.com/koide3/hdl_localization
+https://github.com/koide3/hdl_graph_slam#readme
+
+https://www.freesion.com/article/2960558785/
+https://blog.csdn.net/qq_34622953/article/details/108597567?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-1&spm=1001.2101.3001.4242
+https://blog.csdn.net/a850565178/article/details/105434696
+
+2.包的安装和编译
+注意看这个：https://github.com/koide3/ndt_omp/commit/6887cf4b18e94af39f034cbd98b230734f34f283
+作者改错了，ndt_omp需要改回以前的版本所用的语法。
+
+(1)先装hdl_locaizaion
+sudo apt-get install ros-melodic-geodesy ros-melodic-pcl-ros ros-melodic-nmea-msgs ros-melodic-libg2o
+sudo apt-get install ros-noetic-geodesy ros-noetic-pcl-ros ros-noetic-nmea-msgs ros-noetic-libg2o
+
+cd ~/hdl/src
+git clone https://github.com/koide3/ndt_omp
+git clone https://github.com/SMRT-AIST/fast_gicp --recursive
+git clone https://github.com/koide3/hdl_localization
+git clone https://github.com/koide3/hdl_global_localization
+
+cd ..
+catkin_make -DCMAKE_BUILD_TYPE=Release
+
+(2)再装hdl_graph_slam
+
+cd ~/hdl
+catkin_make
+
+
+
+3.适用性
+(1)hdl_graph_slam_501.launch用于室内建图。
+(2)hdl_graph_slam_400.launch用于室外建图。

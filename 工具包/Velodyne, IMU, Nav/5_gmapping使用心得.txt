@@ -1,0 +1,8 @@
+https://www.guyuehome.com/14967
+
+保存地图：
+rosrun map_server map_saver -f map
+
+对应不同的模型，应选用不同范围的参数：
+        <param name="maxRange" value="30.0"/>
+        <param name="maxUrange" value="16.0"/>
