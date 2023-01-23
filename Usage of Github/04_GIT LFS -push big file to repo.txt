@@ -12,3 +12,12 @@ If it is larger than 100MB, BUT LESS THAN 1 GB!
 	git add file.psd                  //your file name
 	git commit -m "Add design file"   //your file name
 	git push origin main
+
+(3)An example
+	A. Drag the new file(sharedassets0.assets.resS) into the folder.
+	A. cd ~/autsys-projects-gkd/src/AVALANCHE_Data/
+	B. git lfs install and then git lfs track "*.resS"
+	C. git add .gitattributes
+	D. git add sharedassets0.assets.resS
+	E. git commit -m "sharedassets0.assets.resS"
+	F. git push origin main
