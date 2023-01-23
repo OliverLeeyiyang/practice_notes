@@ -1,0 +1,13 @@
+$ rosed roscpp <tab><tab>
+//Press TAB twice after typing roscpp,then we can see all files that could be edited.
+----
+Empty.srv                   roscpp.cmake
+genmsg_cpp.py               roscppConfig.cmake
+gensrv_cpp.py               roscppConfig-version.cmake
+GetLoggers.srv              roscpp-msg-extras.cmake
+Logger.msg                  roscpp-msg-paths.cmake
+msg_gen.py                  SetLoggerLevel.srv
+package.xml       
+
+
+

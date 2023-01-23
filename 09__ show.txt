@@ -1,0 +1,7 @@
+//"show" command
+//To show the contains of the msg or srv.
+e.g.
+$ rosmsg show beginner_tutorials/Num
+$ rossrv show beginner_tutorials/AddTwoInts
+
+

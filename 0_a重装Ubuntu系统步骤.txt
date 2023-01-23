@@ -1,0 +1,63 @@
+######################################
+#                             在Windows上		#
+######################################
+1. 磁盘管理——把分区删干净;
+	或 win+R >> dispart >> list disk >> select disk 0 >> clean；
+2. 制作系统盘
+
+
+######################################
+#                                Boot里			#
+######################################
+推荐装英文版,分区如下：
+	swap area	Logical		16G
+	/		Primary		60G
+	/boot		Logical		1G
+	/home		Logical		rest
+
+
+######################################
+#                                Ubuntu			#
+######################################
+1. 装ROS melodic or noetic，推荐搭梯子官网安装;
+1.5 装显卡驱动
+
+2. 输入以下指令：
+
+###		Ubuntu 18		###
+sudo apt-get install ros-melodic-teleop-twist-keyboard 
+sudo apt-get install ros-melodic-tf2-*
+sudo apt-get install ros-melodic-trac-ik-kinematics-plugin
+sudo apt-get install ros-melodic-effort-controllers
+sudo apt-get install ros-melodic-joint-trajectory-controller
+sudo apt-get install ros-melodic-catkin python-catkin-tools
+sudo apt-get install ros-melodic-moveit
+sudo apt-get install -y ros-melodic-navigation
+sudo apt-get install ros-melodic-joint-state-publisher-gui
+sudo apt-get install libparmetis-dev
+sudo apt install python-pip
+pip  install xlwt
+pip install numpy
+
+###		Ubuntu20			###
+sudo apt-get install ros-noetic-teleop-twist-keyboard 
+sudo apt-get install ros-noetic-tf2-*  
+sudo apt-get install ros-noetic-joint-trajectory-controller
+sudo apt-get install ros-noetic-effort-controllers
+sudo apt-get install ros-noetic-catkin
+sudo apt-get install python3-catkin-tools
+sudo apt-get install ros-noetic-moveit
+sudo apt-get install -y ros-noetic-navigation
+sudo apt-get install ros-noetic-joint-state-publisher-gui
+sudo apt-get install libparmetis-dev
+sudo apt-get install libgoogle-glog-dev libgflags-dev
+sudo apt install python3-pip
+pip  install xlwt
+pip install numpy
+
+
+3. 装sogou输入法, Chrome, Kazam
+4. Pycharm, VS Code, KDevelop, Meshlab, SMPlayer, WPS Office, Spotify
+5.sudo apt-get install rar unrar
+$ sudo unrar x name.rar
+

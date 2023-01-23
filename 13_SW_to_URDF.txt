@@ -1,0 +1,14 @@
+1.墙裂推荐的教程
+https://blog.csdn.net/gpeng832/article/details/73917487
+2.Moveit! setup assistant教程
+https://www.ncnynl.com/archives/201610/1030.html
+https://www.jianshu.com/p/16e0a4dd4b0c
+3.Moveit的详细使用教程
+https://www.jianshu.com/u/4bcc1409e589
+
+4.在导出完成后，一定要在rviz中拖动下每个joint，以查看设定的转动轴的正负和限位是否正确！
+及时在urdf文件中修改。
+
+5.注意导出的urdf文件里没有gazebo标签，需要自己加入
+
+6.注意查看visual和collision标签里的值和inertial里的是否一样，怀疑SW2URDF这个软件有bug。

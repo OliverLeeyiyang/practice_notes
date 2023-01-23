@@ -1,0 +1,16 @@
+以下步骤是基于已经创立的工作空间catkin_ws中的：
+
+
+// cd命令用来定位文件夹
+$ cd ~/catkin_ws/src
+
+//catkin_create_pkg 命令用来创建package
+$ catkin_create_pkg learning_communication std_msgs rospy roscpp
+$ catkin_create_pkg slam_bot rospy roscpp gazebo_msgs gazebo_plugins gazebo_ros gazebo_ros_control
+//learning_communication 是文件夹名，之后的rospy等是该package所依赖的package,中间用空格隔开。
+
+
+之后在工作空间中设置环境变量：
+$ cd ~/catkin_ws
+$ catkin_make
+$ source ~/catkin_ws/devel/setup.bash

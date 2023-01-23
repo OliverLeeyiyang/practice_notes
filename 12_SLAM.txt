@@ -1,0 +1,22 @@
+//使用激光雷达,在Turtlebot上运行
+$ roslaunch velodyne_pointcloud VLP16_points.launch 
+rosrun rviz rviz -f velodyne
+rosbag record -0 out /velodyne_points
+//之后在笔记本上运行
+//可能需要以下两行：
+$ cd catkin_velodyne
+$ source devel/setup.bash
+//
+$ roslaunch lego_loam run.launch 
+$ rosbag info 2021-03-15-22-15-28.bag
+//记录数据
+$rosbag record -a
+
+//回看数据
+$ roscore
+$ rosbag play 2021-03-15-22-15-28.bag
+
+
+推荐网站：
+https://blog.csdn.net/zbr794866300/article/details/99305864
+https://blog.csdn.net/qq_34622953/article/details/108597567?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-1&spm=1001.2101.3001.4242

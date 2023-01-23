@@ -1,0 +1,15 @@
+$ roscore
+//This is the first thing when you want to use ROS.
+
+$ rosnode list
+//This command displays information about the ROS nodes that are currently running.
+
+$ rosnode info /rosout
+//This gave us some more information about rosout, such as the fact that it publishes /rosout_agg. 
+
+$ rosrun [package name] [node name]
+//rosrun allow you to use the package name to directly run a node within a package(without having to know the package path).
+such as:
+$ rosrun turtlesim turtlesim_node
+
+

@@ -1,0 +1,7 @@
+插入相应的装系统盘，选择Try Ubuntu，之后输入以下两行指令：
+
+sudo add-apt-repository ppa:yannubuntu/boot-repair && sudo apt-get update
+
+sudo apt-get install -y boot-repair && boot-repair
+
+之后点第一个大按钮repair就行。

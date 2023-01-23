@@ -1,0 +1,24 @@
+$ rosservice list
+//Print information about active services.
+
+
+$ rosservice type [service]
+//To know what type of the service is.
+
+$ rosservice type [service] | rossrv show
+//Show the struct and parametersof this service.
+//注意：-h只是用于看message的使用，再详细的信息就需要用这种方法.
+
+$ rosservice call [service] [args]
+//This command can use the service you want.
+e.g.
+$ rosservice call /clear
+//To clear the path on the background.
+//When we need to type in the [args], remember to use "" outside, such as "turtle2".
+
+$ rosservice call /spawn 2 4 0.2 ""
+//To spawn a turtle at the target location on the background, and automatically named it after the last turtle, such as turtle2 when the last turtle's name is turtle1.
+
+$ rosservice call /kill "turtle2"
+//To kill the turtle2!
+

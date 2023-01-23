@@ -1,0 +1,59 @@
+//rosparam allows you to store and manipulate data on the ROS Parameter Server.
+
+Commands:
+	rosparam set	set parameter
+	rosparam get	get parameter
+	rosparam load	load parameters from file
+	rosparam dump	dump parameters to file
+	rosparam delete	delete parameter
+	rosparam list	list parameter names
+
+$ rosparam list
+---
+/rosdistro
+/roslaunch/uris/host_oliver__44053
+/rosversion
+/run_id
+/turtlesim/background_b
+/turtlesim/background_g
+/turtlesim/background_r
+
+
+
+
+$ rosparam set [param_name]
+e.g.
+$ rosparam set /turtlesim/background_r 150
+//This command needs to be used with the following command:
+$ rosservice call /clear
+//Then can we see the change of the command.
+
+
+
+
+$ rosparam get /turtlesim/background_g
+//To get the value of the green background channel.
+
+$ rosparam get /
+//To show us the contents of the entire Parameter Server.
+-----
+rosdistro: 'melodic
+
+  '
+roslaunch:
+  uris: {host_oliver__44053: 'http://oliver:44053/'}
+rosversion: '1.14.10
+
+  '
+run_id: 57ea2a92-5933-11eb-ba86-58961d2bdecd
+turtlesim: {background_b: 100, background_g: 100, background_r: 200}
+
+
+
+$ rosparam dump params.yaml
+//To write all the parameters to the file params.yaml.
+
+$ rosparam load params.yaml
+//To load these yaml files into new namespaces.
+
+

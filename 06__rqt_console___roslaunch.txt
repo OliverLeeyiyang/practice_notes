@@ -1,0 +1,30 @@
+//rqt_console attaches to ROS's logging framework to display output from nodes.
+$rosrun rqt_console rqt_console
+
+//rqt_logger_level allows us to change the verbosity level( DEBUG, WARN, INFO, ERROR) of nodes as they run.
+$ rqt_logger_level
+
+
+//By using roslaunch, before you use the command 
+"$ roscd beginner_tutorials", 
+remember to type 
+"$ export ROS_PACKAGE_PATH=~/catkin_ws/src:$ROS_PACKAGE_PATH"  firstly.
+
+
+
+
+<launch>
+//By using Launch File, we can launch several nodes in one Terminal at the same time.
+e.g.
+<launch>
+   <node pkg="turtlesim" name="sim1" type="turtlesim_node"/>
+   <node pkg="turtlesim" name="sim2" type="turtlesim_node"/>
+
+//Grammar of <launch>
+//<node pkg="package_name" type="executable_name" name="node_name"/>
+//output="screen"    将节点的标准输出打印到终端屏幕，默认输出为日志文档。
+  respawn="true"     复位属性，该节点停止时，会自动重启，默认为Flase。
+  required="true"    必要节点，当该节点终止时，launch文件中的其他节点也被终止。
+  ns="namespace"     命名空间，为节点内的相对名称添加命名空间前缀。
+  args="arguments"   节点需要的输入参数。
+

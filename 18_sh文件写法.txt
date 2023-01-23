@@ -1,0 +1,14 @@
+1.打开终端运行launch文件
+gnome-terminal -- bash -c "roslaunch elfin_gazebo elfin5_empty_world.launch"
+
+2.sleep函数
+sleep 5
+停5秒再执行后面的
+
+3.同一个终端内的操作，直接往下写就行
+gnome-terminal -- bash -c "cd ~/robot_arm/src/assemble_9/rviz"
+rviz -d slam.rviz
+
+
+https://www.jianshu.com/p/dfa7e06c0308
+https://www.guyuehome.com/34245

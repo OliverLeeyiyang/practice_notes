@@ -1,0 +1,3 @@
+$ roswtf
+//roswtf examines your system to try and find problems.
+

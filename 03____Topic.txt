@@ -1,0 +1,56 @@
+//process of testing after installing the ROS 
+$ roscore
+$ rosrun turtlesim turtlesim_node
+$ rosrun turtlesim turtle_teleop_key
+
+
+
+$ rqt_graph
+or
+$ rosrun rqt_graph rqt_graph
+//Both two commands can show the dynamic graph of what's going on in the system.
+
+$ rostopic -h
+//This command shows the available sub-commands for rostopic.
+//Commands:
+	rostopic bw	display bandwidth used by topic
+	rostopic delay	display delay of topic from timestamp in header
+	rostopic echo	print messages to screen
+	rostopic find	find topics by type
+	rostopic hz	display publishing rate of topic    
+	rostopic info	print information about active topic
+	rostopic list	list active topics
+	rostopic pub	publish data to topic
+	rostopic type	print topic or field type
+
+//When we want to see the further using skills of the sub-commands above, we can also typing "-h" after the sub-commands,such as:
+$ rostopic list -h
+
+
+$ rostopic echo /turtle1/cmd_vel
+//This command shows the velocity data published by the turtle_teleop_key node.
+
+
+$ rostopic type /turtle1/cmd_vel
+//Get the message type of any topic being published.
+----
+geometry_msgs/Twist
+
+$ rosmsg show geometry_msgs/Twist
+//Get details of message"geometry_msgs/Twist".
+
+
+
+$ rostopic pub [topic] [msg_type] [args]
+such as:
+$ rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'
+//"-1": This option (dash-one) causes rostopic to only publish one message then exit.
+//"/turtle1/cmd_vel":  name of the topic to publish to.
+//"geometry_msgs/Twist":  message type.
+//"--":  This option (double-dash) tells the option parser that none of the following arguments is an option. This is required in cases where your arguments have a leading dash -, like negative numbers.
+//"'[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'": linear and angular(角动量)
+
+
+
+$ rosrun rqt_plot rqt_plot
+//This command displays a scrolling time of the data published on topics.

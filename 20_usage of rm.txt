@@ -1,0 +1,3 @@
+sudo rm [name of file]
+
+sudo rm -r [name of a folder or directory]

@@ -1,0 +1,26 @@
+//创建workspace
+
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/src
+$ catkin_init_workspace
+
+
+//编译workspace
+
+$ cd ~/catkin_ws/
+$ catkin_make
+
+
+//运行环境变量
+
+$ source devel/setup.bash
+
+
+😎️
+//一些附加操作：
+
+//检查环境变量是否生效,如果运行下面命令之后产生当前workspace的路径，则生效
+$ echo $ROS_PACKAGE_PATH
+
+//使环境变量在所有终端中生效，WORKSPACE表示工作空间的路径
+$ echo "source/WORKSPACE/devel/setup.bash">>~/.bashrc

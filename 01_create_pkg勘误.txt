@@ -1,0 +1,6 @@
+1.使用catkin_create_pkg指令之前，先定位到$ cd ~/catkin_ws处，不然之后的pkg编译会报错（The specified base path "/home/exbot/catkin_ws/src/beginner_tutorials" contains a package but "catkin_make" must be invoked in the root of workspace）
+
+2.从网上粘贴代码进cpp的时候，把行号显示给关掉，不然会出大问题。。
+
+3.$ catkin_make之前，要先定位到$ cd ~/catkin_ws处。
+
