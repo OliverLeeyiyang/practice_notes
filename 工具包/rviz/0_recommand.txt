@@ -1,0 +1,4 @@
+//rviz数据三维可视化平台, rviz is a visualization tool that is useful for examining tf2 frames. Let's look at our turtle frames using rviz.
+
+$ rosrun rviz rviz -d `rospack find turtle_tf2`/rviz/turtle_rviz.rviz
+

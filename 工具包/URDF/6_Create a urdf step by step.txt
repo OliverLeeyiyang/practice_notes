@@ -1,0 +1,99 @@
+0. Create folders and other file
+  $ cd ~/catkin_ws/src
+  $ catkin_create_pkg testbot_description urdf
+  $ cd testbot_description
+  $ mkdir urdf
+  $ cd urdf
+//urdf文件夹一般用来放urdf文件，此外还需要创建：/meshes, /materials, /cad 等文件夹。
+  $ mkdir src
+//在src文件夹中创建文件：src/parser.cpp，但是建议还是从SW导出URDF模型更好一些！
+   1 #include <urdf/model.h>
+   2 #include "ros/ros.h"
+   3 
+   4 int main(int argc, char** argv){
+   5   ros::init(argc, argv, "my_parser");
+   6   if (argc != 2){
+   7     ROS_ERROR("Need a urdf file as argument");
+   8     return -1;
+   9   }
+  10   std::string urdf_file = argv[1];
+  11 
+  12   urdf::Model model;
+  13   if (!model.initFile(urdf_file)){
+  14     ROS_ERROR("Failed to parse urdf file");
+  15     return -1;
+  16   }
+  17   ROS_INFO("Successfully parsed urdf file");
+  18   return 0;
+  19 }
+
+//在完成第3步之后，add the following lines to your CMakeList.txt file:
+ add_executable(parser src/parser.cpp)
+ target_link_libraries(parser ${catkin_LIBRARIES})
+//Then build the package and run it:
+$ cd ~/catkin_ws   
+$ catkin_make
+$ .<path>/parser <path>my_robot.urdf
+# Example: ./devel/lib/testbot_description/parser ./src/testbot_description/urdf/my_robot.urdf
+//If the result looks like this,then secceed:
+  [ INFO] 1254520129.560927000: Successfully parsed urdf file
+
+1. 建立机器人的框架
+   1 <robot name="test_robot">
+   2   <link name="link1" />
+   3   <link name="link2" />
+   4   <link name="link3" />
+   5   <link name="link4" />
+   6 
+   7   <joint name="joint1" type="continuous">
+   8     <parent link="link1"/>
+   9     <child link="link2"/>
+  10   </joint>
+  11 
+  12   <joint name="joint2" type="continuous">
+  13     <parent link="link1"/>
+  14     <child link="link3"/>
+  15   </joint>
+  16 
+  17   <joint name="joint3" type="continuous">
+  18     <parent link="link3"/>
+  19     <child link="link4"/>
+  20   </joint>
+  21 </robot>
+
+//每一步之后都可以用$ check_urdf name.urdf来检验模型是否正常。
+
+2. add a origin element
+<origin xyz="-2 5 0" rpy="0 0 1.57" />
+//rpy是坐标系绕轴逆时针旋转的弧度，1.57约等于90度。
+  14   <joint name="joint2" type="continuous">
+  15     <parent link="link1"/>
+  16     <child link="link3"/>
+  17     <origin xyz="-2 5 0" rpy="0 0 1.57" />
+  18   </joint>
+
+
+3. Completing the Kinematics
+//Because the tpye="continuous",we need to add the axis
+<axis xyz="0 1 0" />
+//This means that the joint can rotate around the positive Y-axis.
+
+  14   <joint name="joint2" type="continuous">
+  15     <parent link="link1"/>
+  16     <child link="link3"/>
+  17     <origin xyz="-2 5 0" rpy="0 0 1.57" />
+  18     <axis xyz="-0.707 0.707 0" />
+  19   </joint>
+
+//These commands allow us to see the information of our robot.
+$ check_urdf my_robot.urdf
+$ urdf_to_graphiz my_robot.urdf
+$ evince test_robot.pdf
+
+
+4. 添加需要的Links以及具体的形状参数
+5. 添加Collision和Physical Properties
+6. 使用xacro简化模型（可选）
+7. 如需要，在模型中添加Gazebo需要的语句
+
+

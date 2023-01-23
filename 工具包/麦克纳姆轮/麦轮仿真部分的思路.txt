@@ -1,0 +1,9 @@
+参考twist_to_motor.py把twist速度转化为轮子转动速度和方向
+
+加入到teleop_twist_keyboard.py和mecanum_controller_test.py里，写成输入参数之后发布topic的形式。
+
+去掉轮子的摩擦力。
+
+考虑把轮子的controller写成一个，用矩阵控制速度和方向。
+
+再研究以下youbot里Steerrwheelcontrol是如何写的，如果研究不出来，就先把雷达和红外线的仿真做了，加入导航！

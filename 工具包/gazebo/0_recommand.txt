@@ -1,0 +1,19 @@
+1.建议用gazebo的时候，把独显给关了，用CPU，不然可能会闪退。。。
+
+2.推荐网站
+https://www.jianshu.com/p/4d8b8327eb9b
+http://gazebosim.org/tutorials?tut=inertia&cat=build_robot#Mass
+
+3.在gazebo中调试urdf的模型
+可以使用如下命令：
+$ roslaunch gazebo_ros empty_world.launch
+$ rosrun gazebo_ros spawn_model -urdf -file  ~/robot_arm/src/assemble_9/urdf/assemble_9.urdf -urdf -model assemble_9
+不断删除加载模型，直到调出合适的数值。
+
+4.常用插件的介绍
+http://gazebosim.org/tutorials?tut=ros_gzplugins
+
+5.调试参数推荐
+(1)yaml里的pid值可以调，p=10000.0,i=0.01,d=1.0
+(2)urdf或xacro文件中，joint的effort=800；damping建议从小开始网上调，从0.1开始可以调到20左右；friction也是从小网上调，1~100.
+

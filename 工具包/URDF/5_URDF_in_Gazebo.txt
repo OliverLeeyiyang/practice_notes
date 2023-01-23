@@ -1,0 +1,80 @@
+1. 前置内容Plugins
+//在urdf文件的结尾</robot>标签前加入：
+  <!-- Gazebo plugin for ROS Control -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+
+2. 传输信息Transmissions
+//必须在xacro文件中加入的内容：
+   1   <transmission name="head_swivel_trans">
+   2     <type>transmission_interface/SimpleTransmission</type>
+   3     <actuator name="$head_swivel_motor">
+   4       <mechanicalReduction>1</mechanicalReduction>
+   5     </actuator>
+   6     <joint name="head_swivel">
+   7       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+   8     </joint>
+   9   </transmission>
+
+//如何让Link缓慢移动，而不是直接到达位置：
+   1   <joint name="head_swivel" type="continuous">
+   2     <parent link="base_link"/>
+   3     <child link="head"/>
+   4     <axis xyz="0 0 1"/>
+   5     <origin xyz="0 0 ${bodylen/2}"/>
+   6     <limit effort="30" velocity="1.0"/>
+   7   </joint>
+
+//如何发布消息控制Gazebo和rviz中的Link移动(or 转动):
+$  rostopic pub /r2d2_head_controller/command std_msgs/Float64 "data: -0.707"
+//详细使用见rostopic文件讲解。
+
+
+3. 一次控制多个关节运动
+//首先在Config文件夹中加入一个yaml文件：
+type: "position_controllers/JointGroupPositionController"
+joints:
+  - gripper_extension
+  - left_gripper_joint
+  - right_gripper_joint
+
+//发布消息时，采用如下格式：
+rostopic pub  /r2d2_gripper_controller/command std_msgs/Float64MultiArray "layout:
+  dim:
+  - label: ''
+    size: 3
+    stride: 1
+  data_offset: 0
+data: [0, 0.5, 0.5]"
+//注意最好按照上面的格式写入，该空格就空格。
+
+
+4. 让轮子动起来
+//
+    <!-- This block connects the wheel joint to an actuator (motor), which informs both
+    simulation and visualization of the robot -->
+    <transmission name="${prefix}_${suffix}_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="${prefix}_${suffix}_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="${prefix}_${suffix}_wheel_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+//
+    <!-- This block provides the simulator (Gazebo) with information on a few additional
+    physical properties. See http://gazebosim.org/tutorials/?tut=ros_urdf for more-->
+    <gazebo reference="${prefix}_${suffix}_wheel">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+

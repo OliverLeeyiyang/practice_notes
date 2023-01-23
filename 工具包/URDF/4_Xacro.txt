@@ -1,0 +1,89 @@
+//Add this to the first two line:(the name can be anything you want)
+   1 <?xml version="1.0"?>
+   2 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="firefighter">
+
+//launch xacro
+$ roslaunch urdf_tutorial display.launch model:='$(find urdf_tutorial)/urdf/08-macroed.urdf.xacro'
+
+1. 常量定义用法
+
+   1 <xacro:property name="width" value="0.2" />
+   2 <xacro:property name="bodylen" value="0.6" />
+   3 <link name="base_link">
+   4     <visual>
+   5         <geometry>
+   6             <cylinder radius="${width}" length="${bodylen}"/>
+   7         </geometry>
+   8         <material name="blue"/>
+   9     </visual>
+  10     <collision>
+  11         <geometry>
+  12             <cylinder radius="${width}" length="${bodylen}"/>
+  13         </geometry>
+  14     </collision>
+  15 </link>
+
+
+2. 可替代性
+
+   1 <xacro:property name=”robotname” value=”marvin” />
+   2 <link name=”${robotname}s_leg” />
+
+
+3. 可使用数学公式
+
+   1 <cylinder radius="${wheeldiam/2}" length="0.1"/>
+   2 <origin xyz="${reflect*(width+.02)} 0 0.25" />
+//All of the math is done using floats，即改为浮点数运算
+  <link name="${5/6}"/>    equals to   <link name="0.833333333333"/>
+//melodic版本还可以用sin和cos
+
+
+4. 参数化宏指令
+//设置默认惯性矩阵和质量
+   1     <xacro:macro name="default_inertial" params="mass">
+   2         <inertial>
+   3                 <mass value="${mass}" />
+   4                 <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+   5                      iyy="1.0" iyz="0.0"
+   6                      izz="1.0" />
+   7         </inertial>
+   8     </xacro:macro>
+//This can be used with the code:
+   1 <xacro:default_inertial mass="10"/>
+
+5. 代码复用例子
+   1 <xacro:macro name="leg" params="prefix reflect">
+   2     <link name="${prefix}_leg">
+   3         <visual>
+   4             <geometry>
+   5                 <box size="${leglen} 0.1 0.2"/>
+   6             </geometry>
+   7             <origin xyz="0 0 -${leglen/2}" rpy="0 ${pi/2} 0"/>
+   8             <material name="white"/>
+   9         </visual>
+  10         <collision>
+  11             <geometry>
+  12                 <box size="${leglen} 0.1 0.2"/>
+  13             </geometry>
+  14             <origin xyz="0 0 -${leglen/2}" rpy="0 ${pi/2} 0"/>
+  15         </collision>
+  16         <xacro:default_inertial mass="10"/>
+  17     </link>
+  18 
+  19     <joint name="base_to_${prefix}_leg" type="fixed">
+  20         <parent link="base_link"/>
+  21         <child link="${prefix}_leg"/>
+  22         <origin xyz="0 ${reflect*(width+.02)} 0.25" />
+  23     </joint>
+  24     <!-- A bunch of stuff cut -->
+  25 </xacro:macro>
+  26 <xacro:leg prefix="right" reflect="1" />
+  27 <xacro:leg prefix="left" reflect="-1" />
+
+//useful tricks
+(1)Common Trick 1: Use a name prefix to get two similarly named objects
+(2)Common Trick 2: Use math to calculate joint origins. In the case that you change the size of your robot, changing a property with some math to calculate the joint offset will save a lot of trouble.
+(3)Common Trick 3: Using a reflect parameter, and setting it to 1 or -1. See how we use the reflect parameter to put the legs on either side of the body in the base_to_${prefix}_leg origin. 
+
+

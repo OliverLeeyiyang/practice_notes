@@ -1,0 +1,2 @@
+1.在使用moveit assistant时
+不要给wheel_group使用kdl_kinematics_plugin/KDLKinematicsPlugin解析方案，因为这个是用来规划机械臂的运动的。

@@ -1,0 +1,63 @@
+1.建立底盘的模型
+//在catkin_ws里面建立个自己的package，叫first_try。把urdf.rviz和urdf.vcg放进文件夹rviz里。之后创建urdf文件夹，里面新建dipan_simulation.urdf文件，打入以下内容：
+
+<?xml version="1.0"?>
+<robot name="dipan">
+
+  <link name="basebox_link">
+
+    <visual>
+      <geometry>
+        <box size="0.8 1.0 0.3"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="red">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="0.8 1.0 0.3"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+
+    <inertial>
+      <mass value="20"/>
+	<inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+</robot>
+
+//使用check命令查看目前建立的是否正确：(显示Successfully Parsed XML基本上就表示建模没问题)
+$ check_urdf dipan_simulation.urdf
+
+
+
+2. 在rviz中查看以便继续建模
+//在launch文件夹中创建rvzi_view.launch文件，打入以下内容：
+<launch>
+
+  <arg name="model" default="$(find first_try)/urdf/dipan_sumilation.urdf"/>
+  <arg name="gui" default="true" />
+  <arg name="rvizconfig" default="$(find first_try)/rviz/urdf.rviz" />
+
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+
+  <node if="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+  <node unless="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+</launch>
+
+
+//使用以下命令来查看：
+$ source ~/catkin_ws/devel/setup.bash
+$ roslaunch first_try rviz_view.launch model:='$(find first_try)/urdf/dipan_simulation.urdf'
+//有时候ros找不到模型，所以需要我们给它绝对路径。。
+
+
+

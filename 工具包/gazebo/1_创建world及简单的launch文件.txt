@@ -1,0 +1,28 @@
+1.室内环境建模(Building Editor)
+https://blog.csdn.net/qq_44725448/article/details/109638990
+注意最好把独显给关了！
+
+2.建模完之后保存为.world文件的步骤
+(1)添加物体结束后保存模型至home/用户名/.gazebo/models路径下，关闭Editor到gazebo界面；
+(2)在左上角选择save为.world格式，到需要的目录中（可以是包或者文件夹都行，因为这个文件是XML格式的);
+(3)在存放位置的launch文件夹中创建一个.launch文件，内容如下：
+
+<launch>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+
+    <arg name="world_name" value="$(find robot_room)/worlds/room0.world"/>
+
+    <!-- more default parameters can be changed here -->
+
+  </include>
+
+</launch>
+
+！！注意！！
+arg name里的world_name不需要更改，只用把value里改成之前保存的.world文件的位置就行。
+
+3.已有.world文件的位置或模型信息修改
+使用上一布的.launch文件打开该world之后，点击模型，即可在左下角的栏目里修改基础位置，所有的Link的参数（长宽高等）。

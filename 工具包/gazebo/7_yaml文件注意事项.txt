@@ -1,0 +1,40 @@
+1.最开始记得加namespase
+例如：
+Assemble/assemble_9: 
+不然parameter server无法识别！！！
+
+2.注意ros_control的一些对应关系
+例如：
+(1)yaml文件中的如下controller:
+ joint3_position_controller:
+    type: position_controllers/JointPositionController
+    joint: 25a_arm1
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+(2)launch文件中arg的名字也叫 joint3_position_controller
+(3)xacro文件中的interface设置：
+    <transmission name="trans_25a_arm1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="25a_arm1">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="25a_arm1_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+(4)gazebo标签中的设定：
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>Assemble/assemble_9</robotNamespace>
+      </plugin>
+  </gazebo>
+注意namespace和libgazebo_ros_control.so！！！
+
+3.另外，注意yaml文件中，不同的级别不能在同一列开始写，记得空格！
+例如：
+Assemble/assemble_9: 
+  # Publish all joint states
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+

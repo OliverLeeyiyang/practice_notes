@@ -1,0 +1,7 @@
+//view_frames is one of tf2 tools. It creates a diagram of the frames being broadcast by tf2 over ROS.
+
+$ rosrun tf2_tools view_frames.py
+
+
+//To view the tree.
+$ evince frames.pdf

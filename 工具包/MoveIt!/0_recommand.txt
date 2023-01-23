@@ -1,0 +1,8 @@
+1.讲Moveit!如何使用的网站
+http://docs.ros.org/en/melodic/api/moveit_tutorials/html/index.html
+
+2.在gazebo中使用建成的Moveit!配置文件
+$ roslaunch gazebo_ros empty_world.launch paused:=true use_sim_time:=false gui:=true throttled:=false recording:=false debug:=true
+$ rosrun gazebo_ros spawn_model -file </path_to_new_urdf/file_name.urdf> -urdf -x 0 -y 0 -z 1 -model panda
+
+

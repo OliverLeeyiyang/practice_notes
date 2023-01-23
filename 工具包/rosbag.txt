@@ -1,0 +1,15 @@
+//抓取话题的消息，并打包成一个文件放到指定文件夹中
+$ mkdir ~/bagfiles
+$ cd ~/bagfiles
+$ rosbag record -a
+
+
+//查看数据记录文件的详细信息
+$ rosbag info <your bagfile>
+//可以看到数据中包含的Topic, message类型, message数量等信息
+
+//回放数据
+$ rosbag play <your bagfile>
+
+
+

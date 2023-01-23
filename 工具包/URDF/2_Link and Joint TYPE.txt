@@ -1,0 +1,45 @@
+//<cylinder length="0.6" radius="0.2"/>   圆柱体
+//<box size="0.6 0.1 0.2"/>               长方体
+//<sphere radius="0.2"/>                  球体
+
+
+关节类型
+//fixed            固定，不允许发生运动。
+ 240   <joint name="tobox" type="fixed">
+ 241     <parent link="head"/>
+ 242     <child link="box"/>
+ 243     <origin xyz="0.1814 0 0.1414"/>
+ 244   </joint>
+ 245 </robot>
+
+//continuous       沿某一轴连续旋转（-180～+180度）。
+   1   <joint name="head_swivel" type="continuous">
+   2     <parent link="base_link"/>
+   3     <child link="head"/>
+   4     <axis xyz="0 0 1"/>
+   5     <origin xyz="0 0 0.3"/>
+   6   </joint>
+可以设置一个旋转轴：<axis xyz="0 0 1"/>
+这样物体就会按照设定的轴Z旋转.
+
+//revolute         类似于continuous，但是有严格的位置限制（角度以弧度显示）。
+   1   <joint name="left_gripper_joint" type="revolute">
+   2     <axis xyz="0 0 1"/>
+   3     <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>
+   4     <origin rpy="0 0 0" xyz="0.2 0.01 0"/>
+   5     <parent link="gripper_pole"/>
+   6     <child link="left_gripper"/>
+   7   </joint>
+
+//prismatic        类似于滑块导轨的运动，一个沿另一个配合件直线运动。
+   1   <joint name="gripper_extension" type="prismatic">
+   2     <parent link="base_link"/>
+   3     <child link="gripper_pole"/>
+   4     <limit effort="1000.0" lower="-0.38" upper="0" velocity="0.5"/>
+   5     <origin rpy="0 0 0" xyz="0.19 0 0.2"/>
+   6   </joint>
+
+//planar           允许Link在一个平面内运动。
+//floating         允许Link在一个三维空间内运动。
+
+//坐标：红绿蓝————xyz

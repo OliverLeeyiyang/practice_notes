@@ -1,0 +1,21 @@
+1.gazebo中可以使用的共享库使用：
+        <gazebo>
+            <plugin name="mecanum_controller" filename="libgazebo_ros_planar_move.so">
+                <robotNamespace>$(arg car_namespace)/$(arg car_name)</robotNamespace>
+                <commandTopic>cmd_vel</commandTopic>
+                <odometryTopic>odom</odometryTopic>
+                <odometryFrame>odom</odometryFrame>
+                <leftFrontJoint>join_left_front</leftFrontJoint>
+                <rightFrontJoint>join_right_front</rightFrontJoint>
+                <leftRearJoint>join_left_back</leftRearJoint>
+                <rightRearJoint>join_right_back</rightRearJoint>
+                <odometryRate>60.0</odometryRate>
+                <robotBaseFrame>base_link</robotBaseFrame>
+            </plugin>
+        </gazebo>
+详见文件夹中的base_drive.gazebo
+
+2.一个例子
+https://blog.csdn.net/yaked/article/details/51483531
+
+考虑去掉轮子和地面的摩擦力，这样就可以让轮子肆无忌惮的转了！

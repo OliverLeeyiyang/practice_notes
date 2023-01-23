@@ -1,0 +1,43 @@
+1.出现Gazebo [Err] [REST.cc:205] Error in REST request 
+$  sudo gedit ~/.ignition/fuel/config.yaml
+把url : https://api.ignitionfuel.org   用 # 注释掉
+添加 url: https://api.ignitionrobotics.org  
+
+2.urdf文件中可以在link标签结束后直接添加<gazebo>标签，且不用在前面声明颜色的rgba值。
+
+3.注意！！！
+<joint>标签中，   
+<dynamics damping="1" friction="1" />中的damping(阻尼)值不要设置过大，建议就设置成1！不然模型在gazebo中会显示错误！甚至说不设置这个选项也可以！
+
+4.注意！！！
+在使用机械臂这种有自身重量且需要动力等的设置的零件时，<joint>标签中需要加入以下内容：
+  <joint
+    name="25a_arm1"
+    type="revolute">
+    <origin
+      xyz="0.087 0.146 0"
+      rpy="0 0 0" />
+    <parent
+      link="25a" />
+    <child
+      link="arm1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-0.5"
+      upper="3.64"
+      effort="200"
+      velocity="0.5" />
+    <dynamics
+      damping="0.5"
+      friction="10" />
+不管时revolute还是continue等type，都需要加入，不然gazebo无法正确计算状态！上面的effort, velocity,damping和friction值可以作为一个参考。
+
+5.如果用rostopic pub发布关节状态后，关节未动，考虑是effort不够，可以在gazebo软件中尝试给关节添加力或扭矩，来寻找合适的力。
+
+6.建议gazebo_ros_control等在用的时候还是指定一个Namespace为好。不然可能会影响控制。
+
+7.注意！
+joint name最好带一个英文字母，不然可能无法加载controller.
+
+

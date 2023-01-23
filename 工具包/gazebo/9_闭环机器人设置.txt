@@ -1,0 +1,41 @@
+由于URDF文件无法模拟闭环的机器人，解决方案有如下几种：
+
+1.在SW中导出URDF文件时，选择方便Moveit控制链控制的主体零件构成链。之后在Gazebo中，通过编写Python脚本，进行运动学转换，简单的可以通过位置转换，即只需要求解角度和长度等信息变化即可。如果需要精确控制，可以考虑进行速度转换，或采用插值法控制位置。
+
+2.在URDF文件中最后插入SDF格式的段落：
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+    ..your robot URDF code
+    <gazebo>
+        <joint name="differential_track_l_j" type="revolute">
+            <parent>left_track</parent>
+            <child>differential_arm_l</child>
+            <pose>0.07 0.05 0 0 0 0</pose>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                </limit>
+                <dynamics>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+    
+            </axis>
+            <physics>
+                <ode>
+                    <implicit_spring_damper>1</implicit_spring_damper>
+                    <cfm_damping>1</cfm_damping>
+                    <limit>
+                        <cfm>0</cfm>
+                        <erp>0.2</erp>
+                    </limit>
+                </ode>
+            </physics>
+        </joint>
+    </gazebo>
+</robot>
+
+https://github.com/wojiaojiao/pegasus_gazebo_plugins/issues/7
+

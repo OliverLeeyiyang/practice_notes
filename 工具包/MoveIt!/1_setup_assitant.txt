@@ -1,0 +1,13 @@
+1.如果出现了这样的：
+[ WARN] [1617019781.506436818]: The root link dipan has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+
+可以添加一个link和joint来解决：
+
+<link name="dummy">
+   </link>
+  <joint name="dummy_joint" type="fixed">
+     <parent link="dummy"/>
+     <child link="base_link"/>
+   </joint>
+
+

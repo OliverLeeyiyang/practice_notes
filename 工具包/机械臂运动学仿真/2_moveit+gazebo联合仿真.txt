@@ -1,0 +1,22 @@
+https://blog.csdn.net/qq_34935373/article/details/95916111
+
+好好参考精通ROS机器人编程中的相关教程，很有用！
+
+https://zhuanlan.zhihu.com/p/63229276
+
+
+推荐直接看以往做过的项目，尤其是挖掘机项目！
+
+
+过程！！！
+1.建立arm_gazebo包，确保模型在gazebo里显示没问题
+2.roslaunch moveit_setup_assistant setup_assistant.launch
+http://docs.ros.org/en/melodic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html
+逐步建立moveit包
+
+3.修改ros_controllers.yaml
+4.在arm_gazebo/launch中创建moveit_excution.launch
+5.修改dzy_arm_moveit_controller_manager.launch.xml
+6.修改model_spawn.launch
+7.在arm_gazebo/config中创建arm.yaml，设置机械臂的控制器
+8.基本山差不多了

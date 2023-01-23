@@ -1,0 +1,10 @@
+$ sudo apt-get install ros-$ROS_DISTRO-turtle-tf2 ros-$ROS_DISTRO-tf2-tools ros-$ROS_DISTRO-tf
+$ roslaunch turtle_tf2 turtle_tf2_demo.launch
+
+//This demo allows you to control the center turtle using the keyboard arrow keys, at the same time, the other turtle will continuously follow the turtle you are driving around.
+
+
+//This demo is using the tf2 library to create three coordinate frames: a world frame, a turtle1 frame, and a turtle2 frame. This tutorial uses a tf2 broadcaster to publish the turtle coordinate frames and a tf2 listener to compute the difference in the turtle frames and move one turtle to follow the other.
+
+
+

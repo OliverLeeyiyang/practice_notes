@@ -1,0 +1,2 @@
+由于mu1和mu2可以控制摩擦力的方向，考虑可以通过改变这个，完全摆脱planar这个伪控制器，实现完全动力学仿真。
+https://blog.csdn.net/weixin_43455581/article/details/106321221

@@ -1,0 +1,10 @@
+1.如果出现无法加载joint_state_publisher
+$ sudo apt-get install ros-melodic-robot-state-publisher
+$ sudo apt-get install ros-melodic-joint-state-publisher-gui
+
+2.urdf文件中，最好不要在gazebo标签中加
+<turnGravityOff>false<turnGravityOff>
+不然可能在rviz中无法识别！
+
+
+3.如果出现No transform from xxx to xxx,可以参考“3_针对不同机器人rviz的修改”文档。

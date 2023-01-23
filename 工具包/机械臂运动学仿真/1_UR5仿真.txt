@@ -1,0 +1,22 @@
+//起步准备工作
+$ cd catkin_ws/src
+$ git clone -b melodic-devel https://github.com/ros-industrial/universal_robot.git
+$ cd ..
+$ rosdep update
+$ rosdep install --from-paths src --ignore-src --rosdistro melodic
+$ catkin_make
+$ source ~/catkin_ws/devel/setup.bash
+
+//如果catkin_make上面那一步报错，可以先安装indigo版本的（把melodic换成indigo），再重复代码即可。
+//如果catkin_make报错，则打开相应文件夹中的Cmakelist.txt并按照所说的修改就行。
+
+
+
+//打开ur5
+$ roslaunch ur_gazebo ur5.launch
+//启动moveit+rviz
+$ roslaunch ur5_moveit_config ur5_moveit_planning_execution.launch sim:=true
+$ roslaunch ur5_moveit_config moveit_rviz.launch config:=true
+//如果以上步骤报错，则在输入之前先输入：  $ source ~/catkin_ws/devel/setup.bash
+
+

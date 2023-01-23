@@ -1,0 +1,8 @@
+apt-get install -y     
+ros-noetic-trac-ik-lib     
+ros-noetic-kdl-parser     
+ros-noetic-nlopt       
+libnlopt-dev     
+libnlopt-cxx-dev
+
+https://bitbucket.org/traclabs/trac_ik/issues/67/ros-noetic-support

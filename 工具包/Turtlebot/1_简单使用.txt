@@ -1,0 +1,2 @@
+$ roslaunch turtlebot_bringup minimal.launch
+$ roslaunch turtlebot_teleop keyboard_teleop.launch

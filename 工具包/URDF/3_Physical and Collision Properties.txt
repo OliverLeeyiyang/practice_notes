@@ -1,0 +1,55 @@
+//Collision（写法和visual差不多）
+   1 <link name="base_link">
+   2     <visual>
+   3       <geometry>
+   4         <cylinder length="0.6" radius="0.2"/>
+   5       </geometry>
+   6       <material name="blue">
+   7         <color rgba="0 0 .8 1"/>
+   8       </material>
+   9     </visual>
+  10     <collision>
+  11       <geometry>
+  12         <cylinder length="0.6" radius="0.2"/>
+  13       </geometry>
+  14     </collision>
+  15   </link>
+
+//一般情况下，都会取物体原本的形状作为碰撞范围，但是如果为了保护一些脆弱零件，或是简化一些模型，一般会取稍微大一点的碰撞模型。
+
+
+！Physical Properties
+
+//Inertia
+   1   <link name="base_link">
+   2     <visual>
+   3       <geometry>
+   4         <cylinder length="0.6" radius="0.2"/>
+   5       </geometry>
+   6       <material name="blue">
+   7         <color rgba="0 0 .8 1"/>
+   8       </material>
+   9     </visual>
+  10     <collision>
+  11       <geometry>
+  12         <cylinder length="0.6" radius="0.2"/>
+  13       </geometry>
+  14     </collision>
+  15     <inertial>
+  16       <mass value="10"/>
+  17       <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+  18     </inertial>
+  19   </link>
+
+//质量单位是kg.
+//ixx等这些是惯性矩阵的参数，矩阵如下：
+  ixx  ixy  ixz
+  ixy  iyy  iyz
+  ixz  iyz  izz
+//一些注意事项：
+    The inertia tensor depends on both the mass and the distribution of mass of the object. A good first approximation is to assume equal distribution of mass in the volume of the object and compute the inertia tensor based on the object's shape, as outlined above.
+    If unsure what to put, a matrix with ixx/iyy/izz=1e-3 or smaller is often a reasonable default for a mid-sized link (it corresponds to a box of 0.1 m side length with a mass of 0.6 kg). Although often chosen, the identity matrix is a particularly bad default, since it is often much too high (it corresponds to a box of 0.1 m side length with a mass of 600 kg!).
+    You can also specify an origin tag to specify the center of gravity and the inertial reference frame (relative to the link's reference frame).
+    When using realtime controllers, inertia elements of zero (or almost zero) can cause the robot model to collapse without warning, and all links will appear with their origins coinciding with the world origin. 
+
+

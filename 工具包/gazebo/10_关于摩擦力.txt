@@ -1,0 +1,8 @@
+如果前期不需要摩擦力仿真时，建议将底盘的摩擦力给关掉：
+  <gazebo reference="base_link">
+     <mu1 value="0.0" />
+     <mu2 value="0.0" />
+     <material>Gazebo/Grey</material>
+  </gazebo>
+
+不然会影响控制地盘运动的规划器的规划结果，使机器人无法运动到想要的地方！

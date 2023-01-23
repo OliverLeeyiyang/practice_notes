@@ -1,0 +1,18 @@
+1.catkin_make Turtlebot_ws package
+-- Checking for module 'orocos-bfl'
+--   No package 'orocos-bfl' found
+CMake Error at /usr/share/cmake-3.10/Modules/FindPkgConfig.cmake:415 (message):
+  A required package was not found
+Call Stack (most recent call first):
+  /usr/share/cmake-3.10/Modules/FindPkgConfig.cmake:593 (_pkg_check_modules_internal)
+  robot_pose_ekf/CMakeLists.txt:6 (pkg_check_modules)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/oliver/turtlebot_ws/build/CMakeFiles/CMakeOutput.log".
+See also "/home/oliver/turtlebot_ws/build/CMakeFiles/CMakeError.log".
+Invoking "cmake" failed
+
+解决方法：sudo apt-get install ros-melodic-bfl
+
+

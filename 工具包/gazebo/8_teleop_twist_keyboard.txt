@@ -1,0 +1,8 @@
+1.安装
+sudo apt-get install ros-melodic-teleop-twist-keyboard
+
+2.使用注意
+如果机器人在运动时会飘，建议检查关节质心和整体质心是否在中间，可以通过gazebo界面的inertial去查看。
+
+可以考虑人为修正模型的raw和pitch参数来使得模型在运动时不会飘，但是该解决方案目前只限于平地，如果有坡或z值会变，可能还需要对该python文件做条件限制。
+详情见practice/python相关/python写运动控制/6

@@ -1,0 +1,29 @@
+1.大多数机器人都有base_link和base_footprint两个frame，但是在自己搭建时用的是dipan和dummy，因此在使用rviz时，需要修改rviz文件中的内容，如下几部分：
+
+2.首先时xacro文件夹中，保证统一口径dipan和dummy。（这一步不一定需要）
+
+3.launch文件的修改
+  <node
+    name="tf_footprint_base"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 base_link base_footprint 40" />
+最后那行记得名字改成dipan dummy。
+
+另外，加入rviz的部分：
+  <!-- RViz -->
+  <arg name="rviz" default="true"/>
+  <node if="$(arg rviz)" pkg="rviz" type="rviz" name="$(anon rviz)" respawn="false" output="screen" args="-d $(find assemble_9)/rviz/slam.rviz" />
+
+4.rviz文件的修改
+(1)
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Default Light: true
+    Fixed Frame: dipan
+    Frame Rate: 30
+(2)      
+Class: rviz/RobotModel部分，记得把base_footprint等部分删掉。
+(3)
+Class: TF部分，也记得做相关的改动。

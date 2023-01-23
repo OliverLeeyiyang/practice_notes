@@ -1,0 +1,35 @@
+//Locate to the path of model.
+$ cd ~/catkin_ws/src/urdf_tutorial/urdf
+
+//See this model by rviz
+$ roslaunch urdf_tutorial display.launch model:='$(find urdf_tutorial)/urdf/01-myfirst.urdf'
+
+
+//complexer model
+//add a link
+  11   <link name="right_leg">
+  12     <visual>
+  13       <geometry>
+  14         <box size="0.6 0.1 0.2"/>
+  15       </geometry>
+  16     </visual>
+  17   </link>
+//中间的14行，表示有一个0.6 X 0.1 X 0.2m的box,其方向是xyz。
+
+//add a joint
+  19   <joint name="base_to_right_leg" type="fixed">
+  20     <parent link="base_link"/>
+  21     <child link="right_leg"/>
+  22   </joint>
+//"fixed"表示是固连。基于之前的坐标系。
+
+
+//<origin rpy="0 1.57075 0 " xyz="0.1 0 0"/>
+表示相对于固定点的偏移(xyz)和旋转(rpy:以弧度表示，1.57075=90度),注意正负是不一样的！
+分为Link和Joint的origin:
+1.origin(Joint)是连接点相对于中心点的坐标系偏移；
+2.origin(Link)是Link的中心的偏移;
+
+
+//注意：圆柱体默认垂直创建，所以有时可能需要用rpy旋转。
+

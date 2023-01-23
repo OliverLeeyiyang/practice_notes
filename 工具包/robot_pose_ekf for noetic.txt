@@ -1,0 +1,4 @@
+sudo apt install liborocos-bfl-dev
+
+git clone https://github.com/ros-planning/robot_pose_ekf.git
+用于发布odom到base_foorprint的转换，参考《ros机器人开发实践》P231

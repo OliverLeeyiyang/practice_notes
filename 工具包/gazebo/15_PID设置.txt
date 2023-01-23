@@ -1,0 +1,21 @@
+建议在项目一开始就先调试PID参数！！！
+不然在项目中期，加入PID参数的配置，可能直接导致gazebo_ros_control无法工作！
+
+
+可以在rqt中调节。
+
+
+文件写法：
+wajueji:
+  gazebo_ros_control:   
+    pid_gains:
+      t03_to_1480:
+        p: 100.0
+        i: 0.01 
+        d: 10.0
+
+      t1480_1_to_2:
+        p: 100.0
+        i: 0.01 
+        d: 10.0
+

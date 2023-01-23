@@ -1,0 +1,17 @@
+//Installation urdf_tutorial package
+$ cd~/catkin_ws/src
+$ git clone https://github.com/ros/urdf_tutorial.git urdf_tutorial
+$ cd ~/catkin_ws
+$ catkin_make
+
+
+//!!!Before checking the model, run roscore firstlly!!!
+
+//Remember to install joint_state_publisher_gui!!!
+$ sudo apt-get install joint_state_publisher_gui
+
+
+//Please install this to check your model:
+$ sudo apt-get install liburdfdom-tools
+//Use this command to check the model:(remember to open the terminal in model's folder)
+$ check_urdf 02-multipleshapes.urdf

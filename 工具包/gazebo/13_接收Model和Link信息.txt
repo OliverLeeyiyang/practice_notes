@@ -1,0 +1,4 @@
+        rospy.Subscriber('gazebo/model_states', ModelStates, self.twistCallback1)
+	rospy.Subscriber('gazebo/link_states', LinkStates, self.twistCallback2)
+
+更多用法，如同时写入csv和json文件等用法，见data_record.py
