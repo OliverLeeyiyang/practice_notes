@@ -1,0 +1,29 @@
+/***********One example***********/
+class controllerNode{
+  ros::NodeHandle nh;
+  
+public:
+	ros::Subscriber desired_state_sub;
+	desired_state_sub = nh.subscribe<trajectory_msgs::MultiDOFJointTrajectoryPoint>("/desired_state", 1000, &controllerNode::onDesiredState, this);
+	
+void onDesiredState(const trajectory_msgs::MultiDOFJointTrajectoryPoint& des_state){}
+
+
+
+/***********Explanations**********/
+(1) <trajectory_msgs::MultiDOFJointTrajectoryPoint>
+	message type
+(2) "/desired_state"
+	subscribed topic
+(3) &controllerNode::onDesiredState
+	callback function in the public of class
+
+
+
+
+
+/*********If use ConstPtr***********/
+	void onDesiredState(const trajectory_msgs::MultiDOFJointTrajectoryPoint::ConstPtr& des_state){}
+		xd << des_state->transforms[0].translation.x, des_state->transforms[0].translation.y, des_state->transforms[0].t;
+		
+use -> to get the value.

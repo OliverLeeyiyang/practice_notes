@@ -1,0 +1,27 @@
+/*********One example*********/
+
+params: {
+  kx: 0.5,
+  kv: 1.0,
+  kr: 1.0,
+  komega: 1.0,
+}
+
+waypoints: {
+  # your waypoints here. Think about how to best add any number of waypoints
+  # and the according velocity and acceleration constraints.
+  xx: [10.0, 30.0, 35.0, 35.0, 25.0, 21.0, 16.0, 11.0],
+  yy: [0.0,  10.0, 25.0, 35.0, 39.0, 39.0, 39.0, 39.0],
+}
+
+
+
+
+/*********How to use*********/
+In launch file:
+	<rosparam command="load" file="$(find controller_pkg)/config/controller_params.yaml" />
+
+In cpp file:
+	ros::NodeHandle nh;
+	nh.getParam("/params/kx",kx);
+

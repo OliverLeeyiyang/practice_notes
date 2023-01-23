@@ -1,0 +1,85 @@
+/********************Useful websites************************/
+https://eigen.tuxfamily.org/dox/group__TutorialMatrixArithmetic.html
+
+
+
+/************Example of usage******************/
+#include <eigen3/Eigen/Dense>
+#include <eigen_conversions/eigen_msg.h>
+#include <tf/transform_datatypes.h>
+
+
+
+Eigen::Matrix3d J;     //3x3
+Eigen::Vector3d e3;    //3x1
+Eigen::Quaterniond q;  //(x,y,z,w)'
+Eigen::Matrix3d rotation_matrix = Eigen::Matrix3d::Identity();
+
+
+/*******Quaternion to Rotation Matrix*****/
+Eigen::Matrix3d R = q.toRotationMatrix();
+
+q = Eigen::Quaterniond(roatition_matrix);
+
+/*******Rotation a vector***********/
+// Two methods:
+Eigen::Vector3d v = R * e3;
+Eigen::Matrix3d v = q * e3;
+
+/*******Rotation Matrix to RPY********/
+tf::Quaternion tf_q;
+tf::quaternionMsgToTF(des_state->transforms[0].rotation, tf_q);
+double roll, pitch, yaw;
+tf::Matrix3x3(tf_q).getRPY(roll, pitch, yaw);
+
+
+
+
+
+
+
+/**************** function example *********************/
+static Eigen::Vector3d Vee(const Eigen::Matrix3d& in){
+    Eigen::Vector3d out;
+    out << in(2,1), in(0,2), in(1,0);
+    return out;
+}
+
+static double signed_sqrt(double val){
+    return val>0?sqrt(val):-sqrt(-val);
+}
+
+
+
+
+
+
+
+
+
+/*******************How to use*****************************/
+(1) write value into Vector
+    xd << 1.0, 0.0, 0.0;
+
+(2) write value into Matrix
+    Rd << b_1d_true, b_2d, b_3d;  //each one is a 3d vector;
+    or:
+    F << cf, cf, cf, cf, 
+        cf*d_hat, cf*d_hat, -cf*d_hat, -cf*d_hat, 
+        -cf*d_hat, cf*d_hat, cf*d_hat, -cf*d_hat,
+        cd, -cd, cd, -cd;
+
+(3) calculatiion
+    +,-,*
+    F.inverse()
+    F.transpose()
+    omega.cross(J*omega)
+    b_1d_true.normalize();
+
+(4) Msg
+    (a) Quaternion to Eigen
+      Eigen::Quaterniond q;
+      tf::quaternionMsgToEigen (cur_state.pose.pose.orientation, q);
+      R = q.toRotationMatrix();
+    
+    (b)
