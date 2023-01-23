@@ -1,0 +1,8 @@
+1. install C/C++ package in vscode
+2. at its window, press"Crtl + Shift + P"
+3. choose c/c++ edit configuration(JSON)
+4.add
+	"/opt/ros/noetic/include",
+        "~/basic_ros_ws/devel/include",
+        "/usr/include/eigen3",
+  to "includePath"

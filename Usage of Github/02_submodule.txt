@@ -1,0 +1,6 @@
+add pkgs to /src:
+
+git init
+git submodule add https://github.com/ethz-asl/eigen_catkin.git
+git submodule init
+git submodule update

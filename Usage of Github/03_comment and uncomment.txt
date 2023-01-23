@@ -1,0 +1,7 @@
+(1)select what you want to comment/uncomment
+
+(2)comment
+ctrl+k and then ctrl+c
+
+(3)uncomment
+ctrl+k and the ctrl+u

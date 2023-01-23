@@ -1,0 +1,6 @@
+(1) clone from github to vscode
+    try use the 'clone from github butten.
+
+(2) Do not click the 'leave' butten of any repository!!!
+
+(3)

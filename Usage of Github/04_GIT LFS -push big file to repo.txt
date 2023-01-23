@@ -1,0 +1,14 @@
+https://git-lfs.com/
+
+If the file is smaller than 100MB, it can still be uploaded to Github by VSCODE!!!
+
+If it is larger than 100MB, BUT LESS THAN 1 GB!
+
+(1)install it first
+(2)in vscode, in your repo:
+	git lfs install
+	git lfs track "*.psd"             //addresse of the file
+	git add .gitattributes
+	git add file.psd                  //your file name
+	git commit -m "Add design file"   //your file name
+	git push origin main
